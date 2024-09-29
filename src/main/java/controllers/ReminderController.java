@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReminderController {
 
     public void test1() {
-        
+        System.out.println("12314");
     }
 
 }
