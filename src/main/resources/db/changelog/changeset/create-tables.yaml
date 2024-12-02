@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: "your_name"
+      changes:
+        - createTable:
+            tableName: "user"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: "username"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "password"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "oauth2_provider"
+                  type: "varchar(255)"
+              - column:
+                  name: "email"
+                  type: "varchar(255)"
+
+  - changeSet:
+      id: "2"
+      author: "your_name"
+      changes:
+        - createTable:
+            tableName: "reminder"
+            columns:
+              - column:
+                  name: "id"
+                  type: "bigint"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: "title"
+                  type: "varchar(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "description"
+                  type: "text"
+              - column:
+                  name: "date"
+                  type: "timestamp"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "user_id"
+                  type: "bigint"
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: "3"
+      author: "your_name"
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: "reminder"
+            baseColumnNames: "user_id"
+            referencedTableName: "user"
+            referencedColumnNames: "id"
+            constraintName: "fk_reminder_user"
+            deferrable: false
+            initiallyDeferred: false

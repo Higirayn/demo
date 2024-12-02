@@ -1,16 +1,29 @@
 spring:
   application:
     name: reminder
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://localhost/reminders
-    username: postgres
-    password: rooot
+    url: jdbc:postgresql://db/$1{BASEPROJECT_DATABASE_HOST}
+    username: ${BASEPROJECT_DATABASE_USERNAME}
+    password: ${BASEPROJECT_DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
-  quartz:
-    job-store-type: jdbc
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: higiraynov2s@gmail.com
+    password: whrhwczwnjdsuxwo
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        debug: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 388953566239-lhp9ia0hvnfptlq918gfdv5olum2si1j.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"

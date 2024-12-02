@@ -1,0 +1,10 @@
+version: '3'
+services:
+  base-project-pg:
+    image: postgres:13.3
+    environment:
+      - POSTGRES_USER=fakeuser
+      - POSTGRES_PASSWORD=fakepassword
+      - POSTGRES_DB=fakedb
+    ports:
+      - '5432:5432'

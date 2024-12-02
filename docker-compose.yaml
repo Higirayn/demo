@@ -1,0 +1,23 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Указывает Dockerfile для сборки приложения
+    ports:
+      - "8080:8080"  # Проброс порта приложения
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/reminders  # Обновлено на 'reminders'
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=rooot
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest  # Использует официальный образ PostgreSQL
+    restart: always
+    environment:
+      POSTGRES_DB: reminders
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rooot
+    ports:
+      - "5432:5432"  # Проброс порта базы данных
